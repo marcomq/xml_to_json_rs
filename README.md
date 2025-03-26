@@ -1,7 +1,7 @@
 # XML to JSON rust library - xml_to_json_rs
 Rust library to convert an XML string to serde_json::Value
 
-This library is designed to be simple. It is using roxmltree internally and was inspired by 
+This library is designed to be simple. It is using [roxmltree](https://github.com/RazrFalcon/roxmltree) internally and was inspired by 
 [quickxml_to_serde](https://github.com/AlecTroemel/quickxml_to_serde)
 
 It supports
