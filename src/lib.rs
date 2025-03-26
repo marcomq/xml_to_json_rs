@@ -41,7 +41,8 @@ impl XmlToJson {
         self
     }
 
-    pub fn make_compatible_to_serde(self, input: Value) -> Value {
+    /// Renames #text into $text, so that the JSON can be used by quick-xml
+    pub fn prepare_for_quick_xml(self, input: Value) -> Value {
         Self::rename_keys(input, &self.text_name, "$text")
     }
 
@@ -183,4 +184,14 @@ fn test_extended_xml_to_json() {
             .unwrap(),
         json!({ "b": [{ "@href": "#self", "#text": "simple" }  , {"c": { "@class": "my_class", "d": [{ "#text": "D" }, { "#text": "1" }] } }   ] })
     );
+}
+
+#[test]
+fn test_serde_xml_to_json_to_xml() {
+    let xml =
+        "<a><b href=\"#self\">simple</b><b><c class=\"my_class\"><d>D</d><d>1</d></c></b></a>";
+    let parser = XmlToJson::default();
+    let json_value = parser.xml_to_json(xml).unwrap();
+    let comp_value = parser.prepare_for_quick_xml(json_value);
+    assert_eq!(xml, quick_xml::se::to_string_with_root("a", &comp_value).unwrap());
 }
