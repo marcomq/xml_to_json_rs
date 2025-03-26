@@ -1,17 +1,20 @@
 # XML to JSON rust library - xml_to_json_rs
-Rust library to convert an XML string to serde_json::Value
+![Build Status](https://github.com/marcomq/xml_to_json_rs/workflows/Rust/badge.svg)
+[![Crates.io](https://img.shields.io/crates/v/xml_to_json_rs.svg)](https://crates.io/crates/xml_to_json_rs)
 
-This library is designed to be simple. It is using [roxmltree](https://github.com/RazrFalcon/roxmltree) internally and was inspired by 
+Rust library to convert an XML string to serde_json::Value easily.
+
+This library is designed to be simple and stable. It is using [roxmltree](https://github.com/RazrFalcon/roxmltree) internally and was inspired by 
 [quickxml_to_serde](https://github.com/AlecTroemel/quickxml_to_serde)
 
-It supports
+It supports reading XML to json
 - Strings
 - Arrays
 - Objects
 
 Numbers and Booleans will just be parsed as String, as they also look the same in XML.
 The inner text attributes will be wrapped by default into `#text` and attributes will 
-get an `@`, for example `@href`. By this, the result will be consistent and can 
+get an `@` prefix, for example `@href`. By this, the result will be consistent and can 
 be transformed back to XML. This library is not using `$text` as this creates 
 issues with MongoDB. 
 
