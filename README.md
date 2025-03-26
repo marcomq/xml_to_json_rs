@@ -1,7 +1,8 @@
 # XML to JSON rust library - xml_to_json_rs
 Rust library to convert an XML string to serde_json::Value
 
-This library is designed to be simple and create serde_json::Value.
+This library is designed to be simple. It is using roxmltree internally and was inspired by 
+(quickxml_to_serde)[https://github.com/AlecTroemel/quickxml_to_serde]
 
 It supports
 - Strings
@@ -48,3 +49,11 @@ Usage:
         json!({ "b": [{ "@href": "#self", "#text": "simple" }  , {"c": { "@class": "my_class", "d": [{ "#text": "D" }, { "#text": "1" }] } }   ] })
     );
 ```
+
+### Why not use quick-xml for parsing?
+
+Quick-xml is a great and fast library but unfortunately doesn't support parsing json arrays - except if you force it by using structs. 
+In addition, quick-xml cannot easily change the name of the field of the inner text XML value - it is always `$text`, which can cause trouble when using it in combination with MongoDB.
+Therefore, this library uses RoXmlTree for parsing and has additional functionality to change keys.
+
+Quick-xml is still a good library and can be used easily to serialize JSON back to XML. RoXmltree doesn't support serializing back to XML, so using quick-xml is a good alternative.

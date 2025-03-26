@@ -30,7 +30,7 @@ impl XmlToJson {
         Ok(self.parse_root(&root).unwrap_or(Value::Null))
     }
 
-    /// parse with XML root, default is false as serde_json usually doesn't parse the root
+    /// parse with XML root, default is false as quick-xml usually doesn't parse the root
     pub fn with_root(mut self) -> Self {
         self.with_root = true;
         self
