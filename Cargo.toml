@@ -1,10 +1,10 @@
 [package]
 name = "xml_to_json_rs"
-version = "0.1.0"
+version = "0.1.1"
 edition = "2021"
 authors = [ "Marco Mengelkoch" ]
 description = "Simple rust library to transform XML to json"
-keywords = ["rust", "xml", "json", "serde"]
+keywords = ["rust", "xml", "json", "quick-xml"]
 license = "MIT"
 homepage = "https://github.com/marcomq/xml_to_json_rs"
 repository = "https://github.com/marcomq/xml_to_json_rs"
@@ -12,3 +12,6 @@ repository = "https://github.com/marcomq/xml_to_json_rs"
 [dependencies]
 roxmltree = "0.20.0"
 serde_json = "1.0.140"
+
+[dev-dependencies]
+quick-xml = { version = "0.37.3", features = ["serialize"] }
